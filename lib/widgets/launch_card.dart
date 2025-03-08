@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spacex_flutter_app/models/launch.dart';
 import 'package:spacex_flutter_app/views/launch_detail_screen.dart';
+import 'package:spacex_flutter_app/utils/date_formatter.dart';
 
 class LaunchCard extends StatelessWidget {
   final Launch launch;
@@ -15,7 +16,8 @@ class LaunchCard extends StatelessWidget {
           : const Icon(Icons.rocket_launch),
       title: Text(launch.missionName),
       subtitle: Text(
-        'Date: ${launch.launchDate.toLocal()} | Status: ${launch.success == true ? 'Success' : 'Failure'}',
+        '${formatDateTime(launch.launchDate)} \n'
+        '${launch.success == true ? 'Success' : 'Failure'}',
       ),
       onTap: () {
         Navigator.push(

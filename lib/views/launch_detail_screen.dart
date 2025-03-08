@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spacex_flutter_app/providers/launch_provider.dart';
 import 'package:spacex_flutter_app/models/launch.dart';
+import 'package:spacex_flutter_app/utils/date_formatter.dart';
 
 class LaunchDetailScreen extends ConsumerWidget {
   final String launchId;
@@ -31,9 +32,15 @@ class LaunchDetailScreen extends ConsumerWidget {
           if (launch.missionPatch != null)
             Image.network(launch.missionPatch!, height: 200),
           const SizedBox(height: 16),
-          Text('Mission: ${launch.missionName}', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          Text(
+            'Mission: ${launch.missionName}',
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           const SizedBox(height: 8),
-          Text('Date: ${launch.launchDate.toLocal()}'),
+          Text('Date & Time: ${formatDateTime(launch.launchDate)}'),
           const SizedBox(height: 8),
           Text('Status: ${launch.success == true ? 'Success' : 'Failure'}'),
           const SizedBox(height: 8),
