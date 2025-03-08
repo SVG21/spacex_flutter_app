@@ -21,3 +21,10 @@ final filteredLaunchesProvider = FutureProvider<List<Launch>>((ref) async {
           .toList()
       : launches;
 });
+
+final singleLaunchProvider = FutureProvider.family<Launch, String>((ref, id) async {
+  final service = ref.read(spaceXServiceProvider);
+  return await service.fetchLaunchById(id);
+});
+
+

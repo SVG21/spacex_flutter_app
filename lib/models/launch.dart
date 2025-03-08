@@ -1,4 +1,5 @@
 class Launch {
+  final String id;
   final String missionName;
   final String? missionPatch;
   final DateTime launchDate;
@@ -6,6 +7,7 @@ class Launch {
   final String? details;
 
   Launch({
+    required this.id,
     required this.missionName,
     this.missionPatch,
     required this.launchDate,
@@ -15,6 +17,7 @@ class Launch {
 
   factory Launch.fromJson(Map<String, dynamic> json) {
     return Launch(
+      id: json['id'],
       missionName: json['name'] ?? 'Unknown Mission',
       missionPatch: json['links']['patch']['small'],
       launchDate: DateTime.parse(json['date_utc']),

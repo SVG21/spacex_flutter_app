@@ -21,7 +21,7 @@ class LaunchCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => LaunchDetailScreen(launch: launch),
+            builder: (context) => LaunchDetailScreen(launchId: launch.id),
           ),
         );
       },
