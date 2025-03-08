@@ -34,32 +34,34 @@ class LaunchDetailScreen extends ConsumerWidget {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            // Widget for Mission Patch Image
-            _patchImage(launch.missionPatch),
-            const SizedBox(height: 20),
-            // Widget for Launch Title
-            _launchTitle(launch.missionName),
-            const SizedBox(height: 12),
-            // Widget for Launch Date and Time
-            _launchDetailText(
-              'Date & Time:',
-              formatDateTime(
-                launch.launchDate,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              // Widget for Mission Patch Image
+              _patchImage(launch.missionPatch),
+              const SizedBox(height: 20),
+              // Widget for Launch Title
+              _launchTitle(launch.missionName),
+              const SizedBox(height: 12),
+              // Widget for Launch Date and Time
+              _launchDetailText(
+                'Date & Time:',
+                formatDateTime(
+                  launch.launchDate,
+                ),
               ),
-            ),
-            const SizedBox(height: 10),
-            // Widget for Launch Status (Success/Failure)
-            _launchStatus(launch.success),
-            const SizedBox(height: 10),
-            // Widget for Generic Text Information
-            _launchDetailText(
-              'Details:',
-              launch.details ?? 'No additional information',
-            ),
-          ],
+              const SizedBox(height: 10),
+              // Widget for Launch Status (Success/Failure)
+              _launchStatus(launch.success),
+              const SizedBox(height: 10),
+              // Widget for Generic Text Information
+              _launchDetailText(
+                'Details:',
+                launch.details ?? 'No additional information',
+              ),
+            ],
+          ),
         ),
       ),
     );
