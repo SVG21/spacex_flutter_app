@@ -37,47 +37,76 @@ class LaunchDetailScreen extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            if (launch.missionPatch != null)
-              Image.network(
-                launch.missionPatch!,
-                fit: BoxFit.contain,
-              ),
+            // Widget for Mission Patch Image
+            _patchImage(launch.missionPatch),
             const SizedBox(height: 20),
-            Text(
-              launch.missionName,
-              style: const TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.center,
-            ),
+            // Widget for Launch Title
+            _launchTitle(launch.missionName),
             const SizedBox(height: 12),
-            Text(
-              'Date & Time: ${formatDateTime(launch.launchDate)}',
-              style: const TextStyle(fontSize: 16),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 10),
-            Text(
-              'Status: ${launch.success == true ? 'Success' : 'Failure'}',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: launch.success == true
-                    ? Colors.green
-                    : Colors.red, // Color based on status
+            // Widget for Launch Date and Time
+            _launchDetailText(
+              'Date & Time:',
+              formatDateTime(
+                launch.launchDate,
               ),
-              textAlign: TextAlign.center,
             ),
             const SizedBox(height: 10),
-            Text(
-              'Details:\n${launch.details ?? 'No additional information'}',
-              style: const TextStyle(fontSize: 14),
-              textAlign: TextAlign.center,
+            // Widget for Launch Status (Success/Failure)
+            _launchStatus(launch.success),
+            const SizedBox(height: 10),
+            // Widget for Generic Text Information
+            _launchDetailText(
+              'Details:',
+              launch.details ?? 'No additional information',
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _patchImage(String? missionPatch) {
+    if (missionPatch != null && missionPatch.isNotEmpty) {
+      return Image.network(
+        missionPatch,
+        fit: BoxFit.contain,
+        errorBuilder: (context, error, stackTrace) {
+          return const Icon(Icons.broken_image, size: 100, color: Colors.grey);
+        },
+      );
+    } else {
+      return const Icon(Icons.rocket_launch, size: 100, color: Colors.grey);
+    }
+  }
+
+  Widget _launchTitle(String title) {
+    return Text(
+      title,
+      style: const TextStyle(
+        fontSize: 22,
+        fontWeight: FontWeight.bold,
+      ),
+      textAlign: TextAlign.center,
+    );
+  }
+
+  Widget _launchStatus(bool? success) {
+    return Text(
+      'Status: ${success == true ? 'Success' : 'Failure'}',
+      style: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+        color: success == true ? Colors.green : Colors.red,
+      ),
+      textAlign: TextAlign.center,
+    );
+  }
+
+  Widget _launchDetailText(String label, String value) {
+    return Text(
+      '$label $value',
+      style: const TextStyle(fontSize: 16),
+      textAlign: TextAlign.center,
     );
   }
 }
