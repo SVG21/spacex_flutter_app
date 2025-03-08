@@ -15,9 +15,25 @@ class LaunchCard extends StatelessWidget {
           ? Image.network(launch.missionPatch!, width: 50, height: 50)
           : const Icon(Icons.rocket_launch),
       title: Text(launch.missionName),
-      subtitle: Text(
-        '${formatDateTime(launch.launchDate)} \n'
-        '${launch.success == true ? 'Success' : 'Failure'}',
+      subtitle: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            formatDateTime(launch.launchDate),
+            style: const TextStyle(fontSize: 14),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            launch.success == true ? 'Success' : 'Failure',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: launch.success == true
+                  ? Colors.green
+                  : Colors.red, // Color coding success/failure
+            ),
+          ),
+        ],
       ),
       onTap: () {
         Navigator.push(
