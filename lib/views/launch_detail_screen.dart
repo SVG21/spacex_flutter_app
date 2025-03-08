@@ -31,54 +31,57 @@ class LaunchDetailScreen extends ConsumerWidget {
   }
 
   Widget _buildLaunchDetails(Launch launch) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              // Widget for Mission Patch Image
-              _patchImage(launch.missionPatch),
-              const SizedBox(height: 20),
-              // Widget for Launch Title
-              _launchTitle(launch.missionName),
-              const SizedBox(height: 12),
-              // Widget for Launch Date and Time
-              _launchDetailText(
-                'Date & Time:',
-                formatDateTime(
-                  launch.launchDate,
-                ),
-              ),
-              const SizedBox(height: 10),
-              // Widget for Launch Status (Success/Failure)
-              _launchStatus(launch.success),
-              const SizedBox(height: 10),
-              // Widget for Generic Text Information
-              _launchDetailText(
-                'Details:',
-                launch.details ?? 'No additional information',
-              ),
-            ],
-          ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(height: 8),
+            // Widget for displaying the mission patch image
+            _patchImage(launch.missionPatch),
+
+            const SizedBox(height: 16),
+
+            // Widget for displaying the mission title
+            _launchTitle(launch.missionName),
+
+            const SizedBox(height: 8),
+
+            // Widget for displaying the launch date & time
+            _launchDetailText(
+                'Date & Time:', formatDateTime(launch.launchDate)),
+
+            const SizedBox(height: 8),
+
+            // Widget for displaying the success/failure status
+            _launchStatus(launch.success),
+
+            const SizedBox(height: 8),
+
+            // Widget for displaying additional launch details
+            _launchDetailText(
+                'Details:', launch.details ?? 'No additional information'),
+          ],
         ),
       ),
     );
   }
 
   Widget _patchImage(String? missionPatch) {
-    if (missionPatch != null && missionPatch.isNotEmpty) {
-      return Image.network(
-        missionPatch,
-        fit: BoxFit.contain,
-        errorBuilder: (context, error, stackTrace) {
-          return const Icon(Icons.broken_image, size: 100, color: Colors.grey);
-        },
-      );
-    } else {
-      return const Icon(Icons.rocket_launch, size: 100, color: Colors.grey);
-    }
+    return SizedBox(
+      child: missionPatch != null && missionPatch.isNotEmpty
+          ? Image.network(
+              missionPatch,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) {
+                return const Icon(Icons.broken_image,
+                    size: 100, color: Colors.grey);
+              },
+            )
+          : const Icon(Icons.rocket_launch, size: 100, color: Colors.grey),
+    );
   }
 
   Widget _launchTitle(String title) {
