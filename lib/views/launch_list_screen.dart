@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spacex_flutter_app/providers/launch_provider.dart';
+import 'package:spacex_flutter_app/widgets/error_message.dart';
 import 'package:spacex_flutter_app/widgets/launch_card.dart';
 
 class LaunchListScreen extends ConsumerWidget {
@@ -37,7 +38,13 @@ class LaunchListScreen extends ConsumerWidget {
                   );
                 },
                 loading: () => const Center(child: CircularProgressIndicator()),
-                error: (err, stack) => Center(child: Text('Error: $err')),
+                error: (err, stack) => ErrorMessageWidget(
+                  message:
+                      'Failed to load date. Please check your connection or try again later.',
+                  onRetry: () {
+                    ref.invalidate(filteredLaunchesProvider); // Force a refresh
+                  },
+                ),
               ),
             ),
           ),

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spacex_flutter_app/providers/launch_provider.dart';
 import 'package:spacex_flutter_app/models/launch.dart';
 import 'package:spacex_flutter_app/utils/date_formatter.dart';
+import 'package:spacex_flutter_app/widgets/error_message.dart';
 
 class LaunchDetailScreen extends ConsumerWidget {
   final String launchId;
@@ -18,7 +19,13 @@ class LaunchDetailScreen extends ConsumerWidget {
       body: launchAsyncValue.when(
         data: (launch) => _buildLaunchDetails(launch),
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (err, stack) => Center(child: Text('Error: $err')),
+        error: (err, stack) => ErrorMessageWidget(
+          message:
+              'Failed to load launch details. Please check your connection or try again later.',
+          onRetry: () {
+            ref.invalidate(singleLaunchProvider(launchId));
+          },
+        ),
       ),
     );
   }
