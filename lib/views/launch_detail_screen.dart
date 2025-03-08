@@ -64,6 +64,8 @@ class LaunchDetailScreen extends ConsumerWidget {
             // Widget for displaying additional launch details
             _launchDetailText(
                 'Details:', launch.details ?? 'No additional information'),
+
+            const SizedBox(height: 16),
           ],
         ),
       ),
