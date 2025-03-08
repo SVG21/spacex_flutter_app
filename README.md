@@ -31,18 +31,16 @@ It includes a launch list, launch details, and filtering by year, showcasing API
 
 ## 📌 Folder Structure
 
-* [spacex_flutter_app](./spacex_flutter_app)
-   * [lib](./spacex_flutter_app/lib)
-      * [models](./spacex_flutter_app/lib/models) - Data models (Launch)
-      * [providers](./spacex_flutter_app/lib/providers) - State management (Riverpod)
-      * [services](./spacex_flutter_app/lib/services) - API service (SpaceX API)
-      * [views](./spacex_flutter_app/lib/views) - UI Screens (Launch List, Launch Details)
-      * [widgets](./spacex_flutter_app/lib/widgets) - Reusable UI components
-      * [utils](./spacex_flutter_app/lib/utils) - Helper functions (Date formatting)
-      * [main.dart](./spacex_flutter_app/lib/main.dart) - Application entry point
-   * [pubspec.yaml](./spacex_flutter_app/pubspec.yaml) - Project dependencies
-   * [README.md](./spacex_flutter_app/README.md) - Documentation
-
+* [lib](./lib)
+   * [models](./lib/models) - Data models (Launch)
+   * [providers](./lib/providers) - State management (Riverpod)
+   * [services](./lib/services) - API service (SpaceX API)
+   * [views](./lib/views) - UI Screens (Launch List, Launch Details)
+   * [widgets](./lib/widgets) - Reusable UI components
+   * [utils](./lib/utils) - Helper functions (Date formatting)
+   * [main.dart](./lib/main.dart) - Application entry point
+* [pubspec.yaml](./pubspec.yaml) - Project dependencies
+* [README.md](./README.md) - Documentation
 
 ---
 
