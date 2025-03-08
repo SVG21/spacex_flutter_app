@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Error message Widget
 class ErrorMessageWidget extends StatelessWidget {
   final String message;
   final VoidCallback onRetry;

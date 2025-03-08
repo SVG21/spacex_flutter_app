@@ -5,6 +5,7 @@ import 'package:spacex_flutter_app/models/launch.dart';
 class SpaceXService {
   static const String _baseUrl = 'https://api.spacexdata.com/v5/launches';
 
+  // Fetches a list of all launches from SpaceX API
   Future<List<Launch>> fetchLaunches() async {
     final response = await http.get(Uri.parse(_baseUrl));
 
@@ -16,6 +17,7 @@ class SpaceXService {
     }
   }
 
+  // Fetches details of a specific launch by ID
   Future<Launch> fetchLaunchById(String id) async {
     final response = await http.get(Uri.parse('$_baseUrl/$id'));
 

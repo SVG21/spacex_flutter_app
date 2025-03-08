@@ -3,6 +3,7 @@ import 'package:spacex_flutter_app/models/launch.dart';
 import 'package:spacex_flutter_app/views/launch_detail_screen.dart';
 import 'package:spacex_flutter_app/utils/date_formatter.dart';
 
+// Card Widget to show launch list
 class LaunchCard extends StatelessWidget {
   final Launch launch;
 
@@ -30,7 +31,7 @@ class LaunchCard extends StatelessWidget {
               fontWeight: FontWeight.bold,
               color: launch.success == true
                   ? Colors.green
-                  : Colors.red, // Color coding success/failure
+                  : Colors.red,
             ),
           ),
         ],

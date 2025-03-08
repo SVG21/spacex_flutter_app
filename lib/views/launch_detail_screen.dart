@@ -30,6 +30,7 @@ class LaunchDetailScreen extends ConsumerWidget {
     );
   }
 
+  // Builds the detailed launch UI
   Widget _buildLaunchDetails(Launch launch) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
