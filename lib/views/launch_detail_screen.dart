@@ -24,28 +24,52 @@ class LaunchDetailScreen extends ConsumerWidget {
   }
 
   Widget _buildLaunchDetails(Launch launch) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          if (launch.missionPatch != null)
-            Image.network(launch.missionPatch!, height: 200),
-          const SizedBox(height: 16),
-          Text(
-            'Mission: ${launch.missionName}',
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            if (launch.missionPatch != null)
+              Image.network(
+                launch.missionPatch!,
+                fit: BoxFit.contain,
+              ),
+            const SizedBox(height: 20),
+            Text(
+              launch.missionName,
+              style: const TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
             ),
-          ),
-          const SizedBox(height: 8),
-          Text('Date & Time: ${formatDateTime(launch.launchDate)}'),
-          const SizedBox(height: 8),
-          Text('Status: ${launch.success == true ? 'Success' : 'Failure'}'),
-          const SizedBox(height: 8),
-          Text('Details: ${launch.details ?? 'No additional information'}'),
-        ],
+            const SizedBox(height: 12),
+            Text(
+              'Date & Time: ${formatDateTime(launch.launchDate)}',
+              style: const TextStyle(fontSize: 16),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 10),
+            Text(
+              'Status: ${launch.success == true ? 'Success' : 'Failure'}',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: launch.success == true
+                    ? Colors.green
+                    : Colors.red, // Color based on status
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 10),
+            Text(
+              'Details:\n${launch.details ?? 'No additional information'}',
+              style: const TextStyle(fontSize: 14),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
       ),
     );
   }
