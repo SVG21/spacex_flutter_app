@@ -20,26 +20,18 @@ It includes a launch list, launch details, and filtering by year, showcasing API
 
 1. Install Flutter & Dart ([Guide](https://docs.flutter.dev/get-started/install))
 2. Navigate to the Project Folder
-3. Install Dependencies
+3. Install Dependencies:
+   ```sh
    flutter pub get
 4. Run the Application
+   ```sh
    flutter run
 
 ---
 
 ## 📌 Folder Structure
 
-spacex_flutter_app/
-│── lib/
-│   ├── models/            # Data models (Launch)
-│   ├── providers/         # State management (Riverpod)
-│   ├── services/          # API service (SpaceX API)
-│   ├── views/             # UI Screens (Launch List, Launch Details)
-│   ├── widgets/           # Reusable UI components
-│   ├── utils/             # Helper functions (Date formatting)
-│   ├── main.dart          # Application entry point
-│── pubspec.yaml           # Project dependencies
-│── README.md              # Documentation
+spacex_flutter_app/ │── lib/ │ ├── models/ # Data models (Launch) │ ├── providers/ # State management (Riverpod) │ ├── services/ # API service (SpaceX API) │ ├── views/ # UI Screens (Launch List, Launch Details) │ ├── widgets/ # Reusable UI components │ ├── utils/ # Helper functions (Date formatting) │ ├── main.dart # Application entry point │── pubspec.yaml # Project dependencies │── README.md # Documentation
 
 ---
 
