@@ -46,22 +46,40 @@ It includes a launch list, launch details, and filtering by year, showcasing API
 
 ## 📌 Technical Choices & Architecture
 
-State Management: Riverpod
+### State Management: Riverpod
 
-Used Riverpod for simplicity, performance, and testability.
-FutureProvider for managing API calls.
-StateProvider for managing selected year filters.
+- Used Riverpod for simplicity, performance, and testability.
+- `FutureProvider` for managing API calls.
+- `StateProvider` for managing selected year filters.
 
-API Integration
+### API Integration
 
-Fetches SpaceX launch data from SpaceX API v5.
-GET /launches → Fetches all launches.
-GET /launches/{id} → Fetches details of a specific launch.
+- Fetches SpaceX launch data from SpaceX API v5.
+- `GET /launches` → Fetches all launches.
+- `GET /launches/{id}` → Fetches details of a specific launch.
 
-Error Handling
+### UI Handling
 
-Displays an error message with a retry button on network failure.
-Handles missing data with placeholders.
+- If a **mission patch image** is not available, a **default rocket icon** (`Icons.rocket_launch`) is displayed instead.
+- Ensures that the layout remains consistent and properly aligned even when an image is missing.
+
+### Error Handling
+
+- Displays an error message with a retry button on network failure.
+- Handles missing data with placeholders.
+
+
+---
+
+## 📌 Assumptions & Trade-offs
+
+| **Assumption / Trade-off** | **Justification** |
+|----------------------------|-------------------|
+| **Using Riverpod instead of Provider or Bloc** | Riverpod is simpler, has better performance, and avoids unnecessary boilerplate code. |
+| **Using `FutureProvider` instead of caching data locally** | Keeps data fresh on every request instead of using a local database. |
+| **Displaying a default icon when mission patch is missing** | Ensures consistent UI structure without shifting elements. |
+| **Minimal UI customization** | Focus is on functionality rather than complex styling or animations. |
+| **Not implementing infinite scrolling** | SpaceX API returns a manageable dataset, so pagination is not necessary. |
 
 ---
 
